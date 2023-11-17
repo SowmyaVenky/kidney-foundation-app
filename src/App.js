@@ -2,26 +2,22 @@ import './App.css';
 import 'survey-core/defaultV2.min.css';
 import { Model } from 'survey-core';
 import { Survey } from 'survey-react-ui';
+import { questions } from './data/questions.js';
 
-const surveyJson = {
-  elements: [{
-    name: "FirstName",
-    title: "Enter your first name:",
-    type: "text"
-  }, {
-    name: "LastName",
-    title: "Enter your last name:",
-    type: "text"
-  },{
-    name: "Age",
-    title: "Enter your age:",
-    type: "text"
-  }]
+const customCss = {
+  "question": {
+    "content": "question-content",
+    "answered": "question-answered",
+    "titleRequired": "question-title-required"
+  }
 };
 
 function App() {
-  const survey = new Model(surveyJson);
-  return <Survey model={survey} />;
+  const survey = new Model(questions);
+  survey.css = customCss;
+  return (
+    <Survey model={survey}
+    />);
 }
 
 export default App;
